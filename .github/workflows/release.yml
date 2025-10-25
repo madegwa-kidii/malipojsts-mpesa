@@ -1,4 +1,4 @@
-name: Publish to npm
+name: Release and Publish to npm
 
 on:
   push:
@@ -25,23 +25,20 @@ jobs:
           registry-url: 'https://registry.npmjs.org'
 
       - name: Install dependencies
-        run: npm install
+        run: npm ci
 
       - name: Build package
         run: npm run build
-
-      - name: Commit build artifacts
-        run: |
-          git add -A
-          git commit -m "chore: build artifacts [skip ci]" || echo "No changes to commit"
-
 
       - name: Bump version and tag
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          npm version patch -m "chore(release): %s [skip ci]"
-          git push --follow-tags
+          npm version patch --no-git-tag-version
+          git add package.json package-lock.json
+          git commit -m "chore(release): bump version [skip ci]" || echo "No changes to commit"
+          git tag "v$(node -p "require('./package.json').version")"
+          git push origin main --tags
 
       - name: Publish to npm
         run: npm publish
