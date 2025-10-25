@@ -1,0 +1,35 @@
+{
+  "name": "malipojsts-mpesa",
+  "version": "1.0.0",
+  "description": "A TypeScript M-Pesa payments library",
+  "main": "dist/index.cjs",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "dev": "tsup src/index.ts --watch --dts --format esm,cjs",
+    "build": "tsup src/index.ts --dts --format esm,cjs --sourcemap",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": ["mpesa", "typescript", "payments", "daraja"],
+  "author": "Madegwa Kidii",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/madegwa-kidii/malipojsts-mpesa.git"
+  },
+  "bugs": {
+    "url": "https://github.com/madegwa-kidii/malipojsts-mpesa/issues"
+  },
+  "homepage": "https://github.com/madegwa-kidii/malipojsts-mpesa#readme",
+  "devDependencies": {
+    "tsup": "^8.5.0",
+    "typescript": "^5.9.3"
+  }
+}
