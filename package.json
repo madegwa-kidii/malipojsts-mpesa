@@ -15,7 +15,8 @@
   "scripts": {
     "dev": "tsup src/index.ts --watch --dts --format esm,cjs",
     "build": "tsup src/index.ts --dts --format esm,cjs --sourcemap",
-    "prepublishOnly": "npm run build"
+    "prepublishOnly": "npm run build",
+    "release": "npm version patch && npm publish"
   },
   "keywords": ["mpesa", "typescript", "payments", "daraja"],
   "author": "Madegwa Kidii",
